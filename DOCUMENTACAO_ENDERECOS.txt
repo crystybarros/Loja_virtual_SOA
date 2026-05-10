@@ -1,0 +1,120 @@
+API de Endereços
+Descrição: Apis para lidar com endereços
+
+GET /enderecos
+Descrição:
+Listagem de endereços.
+
+Respostas
+200 - OK
+Lista de endereços
+
+Corpo da Resposta
+[
+  {
+    "bairro": "Centro",
+    "cep": "01000-000",
+    "cidade": "São Paulo",
+    "complemento": null,
+    "createdAt": "2026-05-10T17:32:34.799255",
+    "estado": "SP",
+    "id": 1,
+    "logradouro": "Av. Principal",
+    "numero": "100",
+    "updatedAt": "2026-05-10T17:32:34.799255"
+  }
+]
+
+
+POST /enderecos
+Descrição:
+Cadastrar endereço.
+
+Corpo da Requisição
+{
+  "cep": "01000-000",
+  "logradouro": "Av. Principal",
+  "numero": "100",
+  "complemento": "Apartamento 10",
+  "bairro": "Centro",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "clienteId": 1
+}
+
+Validações
+CEP obrigatório
+Logradouro obrigatório
+Número obrigatório
+Bairro obrigatório
+Cidade obrigatória
+Estado obrigatório
+
+Respostas
+201 - Endereço cadastrado com sucesso
+
+Header
+Location: /enderecos/{id}
+Corpo da Resposta
+{
+  "createdAt": "2026-05-10T20:46:46.550Z",
+  "updatedAt": "2026-05-10T20:46:46.550Z",
+  "id": 1,
+  "cep": "01000-000",
+  "logradouro": "Av. Principal",
+  "numero": "100",
+  "complemento": "Apartamento 10",
+  "bairro": "Centro",
+  "cidade": "São Paulo",
+  "estado": "SP"
+}
+
+400 - Erro de validação.
+
+Corpo da Resposta
+{
+  "type": "https://example.com/",
+  "title": "Erro de validação",
+  "status": 400,
+  "detail": "Dados inválidos"
+}
+
+GET /enderecos/{id}
+Descrição: Recupera um endereço específico.
+
+Parâmetros
+Nome	Tipo	Local	Descrição
+id	Long	Path	Id do endereço
+
+
+Respostas
+200 - Dados do endereço
+
+Corpo da Resposta
+{
+  "createdAt": "2026-05-10T20:46:46.558Z",
+  "updatedAt": "2026-05-10T20:46:46.558Z",
+  "id": 1,
+  "cep": "01000-000",
+  "logradouro": "Av. Principal",
+  "numero": "100",
+  "complemento": "Apartamento 10",
+  "bairro": "Centro",
+  "cidade": "São Paulo",
+  "estado": "SP"
+}
+
+404 - Endereço não encontrado
+
+
+DELETE /enderecos/{id}
+Descrição: Remove um endereço.
+
+Parâmetros
+Nome	Tipo	Local	Descrição
+id	Long	Path	Id do endereço
+
+Respostas
+204 - Endereço removido com sucesso
+
+404 - Endereço não encontrado.
